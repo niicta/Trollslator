@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Trollslater</string>
+    <string name="dictionaryJSON_tag">dictionaryJSONTag</string>
+    <string name="langsJSON_tag">langsJSONTag</string>
+    <string name="translateJSON_tag">translateJSONTag</string>
+    <string name="ui">en</string>
+    <string name="notResponding">Server is not responding or you have not Internet connection</string>
+    <string name="invalidKey">Invalid API key</string>
+    <string name="blockedKey">API key is blocked</string>
+    <string name="somethingWrong">Something was wrong</string>
+    <string name="dailyLimit">Daily requests limit exceeded</string>
+    <string name="countLimit">Characters count limit exceeded</string>
+    <string name="cantTranslate">Can\'t translate this</string>
+    <string name="illegalLang">The specified translation direction is not supported</string>
+    <string name="about">About</string>
+    <string name="aboutString">Author: Nikita Krasnopolsky</string>
+    <string name="clearHistory">Clear history</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="historySearchHint">Search in history</string>
+</resources>

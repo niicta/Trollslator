@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="niicta.trollslator.MainActivity"
+    android:id="@+id/main_layout"
+    android:background="#FFFFFF">
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <TabHost
+        android:id="@+id/tabHost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"></TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@android:id/tabs"
+                android:layout_alignParentTop="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/settingsTab"
+                    android:orientation="vertical">
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_border"
+                        android:orientation="horizontal"
+                        android:id="@+id/about">
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/about"
+
+                            android:layout_marginStart="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/about"
+                            android:textSize="20sp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_border"
+                        android:id="@+id/clearHistory">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/binimagecolor_small"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/clearHistory"
+                            android:textSize="20sp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_border"
+                        >
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/translator_logo"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="5dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Переведено сервисом «Яндекс.Переводчик»"
+                            android:textSize="20sp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="http://translate.yandex.ru/"
+                            android:autoLink="web"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="15sp"
+                            />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_border">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/translator_logo"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="5dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Реализовано с помощью сервиса «API «Яндекс.Словарь»"
+                                android:textSize="20sp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="http://api.yandex.ru/dictionary/"
+                                android:autoLink="web"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginBottom="5dp"
+                                android:textSize="15sp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mainTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <niicta.trollslator.view.views.LangBlock
+                        android:id="@+id/langBlock"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RelativeLayout
+                        android:id="@+id/anchorLayoutId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <niicta.trollslator.view.views.TranslateAutoCompleteTextView
+                            android:id="@+id/from_word"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/background_full_border"
+                            android:dropDownAnchor="@id/from_word"
+                            android:maxLines="5"
+                            android:minLines="3"
+                            android:paddingEnd="32dp"
+                            android:paddingStart="10dp" />
+
+                        <ProgressBar
+
+                            android:id="@+id/progress_bar"
+                            style="?android:attr/progressBarStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginTop="8dp"
+                            android:visibility="gone" />
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/from_word"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="40dp"
+                            android:id="@+id/translate_scroll">
+                        <TextView
+                            android:id="@+id/translate_to"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                        </ScrollView>
+                        <ImageView
+                            android:id="@+id/star"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@android:drawable/star_off"
+                            android:layout_alignTop="@+id/translate_scroll"
+                            android:layout_alignEnd="@+id/from_word" />
+
+                        <TextView
+                            android:id="@+id/lettersCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/from_word"
+                            android:layout_alignEnd="@id/from_word"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/darkGrey"
+                            android:text="0/10000" />
+
+                        <TextView
+                            android:id="@+id/clearText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/from_word"
+                            android:layout_alignBottom="@id/from_word"
+                            android:layout_below="@+id/progress_bar"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="15sp"
+                            android:text="X" />
+
+                    </RelativeLayout>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginStart="15dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ProgressBar
+                                android:id="@+id/centralProgressBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:visibility="gone" />
+
+                            <LinearLayout
+                                android:id="@+id/translate_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+
+
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/dictionaryAPI"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Реализовано с помощью сервиса «API «Яндекс.Словарь»"
+                                android:layout_marginTop="17dp"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:layout_below="@+id/translate_layout"
+                                android:layout_alignParentEnd="true" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/dictionaryAPI"
+                                android:id="@+id/dictionaryLink"
+                                android:text="http://api.yandex.ru/dictionary/"
+                                android:autoLink="web"
+                                android:textSize="15sp"
+                                />
+                        </RelativeLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/historyTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingEnd="0dp"
+                    android:paddingStart="0dp">
+
+                    <EditText
+                        android:id="@+id/historyEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/historySearchHint"
+                        android:maxLines="1"
+                        android:paddingEnd="10dp"
+                        android:paddingStart="10dp" />
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/history_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+
+                        </LinearLayout>
+
+
+                    </ScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/favoriteTab"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:id="@+id/favoriteLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+
+            </FrameLayout>
+        </RelativeLayout>
+    </TabHost>
+
+</LinearLayout>

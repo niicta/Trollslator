@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Trollslater</string>
+    <string name="dictionaryJSON_tag">dictionaryJSONTag</string>
+    <string name="langsJSON_tag">langsJSONTag</string>
+    <string name="translateJSON_tag">translateJSONTag</string>
+    <string name="ui">ru</string>
+    <string name="notResponding">Сервер не отвечает не отвечает или отсутствует подключение с Интернет</string>
+    <string name="invalidKey">Неверный API-ключ</string>
+    <string name="blockedKey">API-ключ заблокирован</string>
+    <string name="somethingWrong">Что-то пошло не так</string>
+    <string name="dailyLimit">Суточный лимит запросов превышен</string>
+    <string name="countLimit">Превышен лимит символов</string>
+    <string name="cantTranslate">Невозможно перевести это</string>
+    <string name="illegalLang">Данное направление перевода не поддерживается</string>
+    <string name="about">О приложении</string>
+    <string name="aboutString">Автор: Никита Краснопольский</string>
+    <string name="clearHistory">Очистить историю</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="historySearchHint">Поиск по истории</string>
+</resources>
