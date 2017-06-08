@@ -1,6 +1,7 @@
 package niicta.trollslator.events.Impl;
 
 import niicta.trollslator.events.Event;
+import niicta.trollslator.events.EventTypes;
 import niicta.trollslator.model.History;
 
 /**
@@ -8,7 +9,6 @@ import niicta.trollslator.model.History;
  */
 
 public class HistoryChangedEvent implements Event {
-    private static final String EVENT_TYPE = "HistoryChangedEvent";
 
     private History history;
 
@@ -17,8 +17,8 @@ public class HistoryChangedEvent implements Event {
     }
 
     @Override
-    public String getType() {
-        return EVENT_TYPE;
+    public int getType() {
+        return EventTypes.HISTORY_CHANGED_EVENT_TYPE;
     }
 
     @Override

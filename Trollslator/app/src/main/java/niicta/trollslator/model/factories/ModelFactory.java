@@ -12,7 +12,7 @@ import niicta.trollslator.model.LanguageMapper;
  * Created by niict on 06.06.2017.
  */
 
-public interface Factory {
+public interface ModelFactory {
     History createHistory(InputStream is, EventBus eventBus);
     HistoryKey createHistoryKey(String fromLang, String toLang, String text, String translation);
     LanguageMapper createLanguageMapper(InputStream is, EventBus eventBus);

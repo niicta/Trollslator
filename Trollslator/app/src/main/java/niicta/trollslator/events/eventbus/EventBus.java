@@ -8,6 +8,6 @@ import niicta.trollslator.listeners.Listener;
  */
 
 public interface EventBus {
-    void addListener(String eventType, Listener listener);
+    void addListener(int eventType, Listener listener);
     void dispatchEvent(Event event);
 }

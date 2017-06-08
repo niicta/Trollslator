@@ -1,18 +1,16 @@
 package niicta.trollslator.events.Impl;
 
 import niicta.trollslator.events.Event;
+import niicta.trollslator.events.EventTypes;
 
 /**
  * Created by niict on 08.06.2017.
  */
 
 public class NewLangMappingEvent implements Event {
-    private static final String EVENT_TYPE = "NewLangMappingEvent";
 
     private String[] keys;
     private String[] uiLangs;
-
-    public NewLangMappingEvent(){}
 
     public NewLangMappingEvent(String[] keys, String[] uiLangs){
         this.keys = keys;
@@ -20,8 +18,8 @@ public class NewLangMappingEvent implements Event {
     }
 
     @Override
-    public String getType() {
-        return EVENT_TYPE;
+    public int getType() {
+        return EventTypes.NEW_LANG_MAPPING_EVENT_TYPE;
     }
 
     @Override

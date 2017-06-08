@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 import niicta.trollslator.events.Event;
+import niicta.trollslator.events.EventTypes;
 import niicta.trollslator.events.Impl.ChangeLanguageDirectionEventType;
 import niicta.trollslator.events.Impl.LanguageSwitcherChangedEvent;
 import niicta.trollslator.events.eventbus.EventBus;
@@ -35,28 +36,6 @@ public class StandardLanguageSwitcher implements LanguageSwitcher{
         initListeners(eventBus);
         deserialize(is);
         notifyAboutChanges();
-    }
-
-    private void notifyAboutChanges() {
-        eventBus.dispatchEvent(new LanguageSwitcherChangedEvent(this));
-    }
-
-    private void initListeners(EventBus eventBus) {
-        final String changeLanguageDirectionEventType = new ChangeLanguageDirectionEventType().getType();
-        eventBus.addListener(changeLanguageDirectionEventType,
-                new Listener() {
-                    @Override
-                    public void onEvent(Event event) {
-                        if (event != null && changeLanguageDirectionEventType.equals(event.getType())) {
-                            String[] eventArgs = ((ChangeLanguageDirectionEventType) event).getEventArgs();
-                            setFromLang(eventArgs[0]);
-                            setToLang(eventArgs[1]);
-                        }
-                        else {
-                            throw new RuntimeException("Unsupported Event " + event);
-                        }
-                    }
-                });
     }
 
     @Override
@@ -113,5 +92,27 @@ public class StandardLanguageSwitcher implements LanguageSwitcher{
 
             }
         }
+    }
+
+
+    private void notifyAboutChanges() {
+        eventBus.dispatchEvent(new LanguageSwitcherChangedEvent(this));
+    }
+
+    private void initListeners(EventBus eventBus) {
+        eventBus.addListener(EventTypes.CHANGE_LANGUAGE_DIRECTION_EVENT_TYPE,
+                new Listener() {
+                    @Override
+                    public void onEvent(Event event) {
+                        if (event != null && EventTypes.CHANGE_LANGUAGE_DIRECTION_EVENT_TYPE == event.getType()) {
+                            String[] eventArgs = ((ChangeLanguageDirectionEventType) event).getEventArgs();
+                            setFromLang(eventArgs[0]);
+                            setToLang(eventArgs[1]);
+                        }
+                        else {
+                            throw new RuntimeException("Unsupported Event " + event);
+                        }
+                    }
+                });
     }
 }

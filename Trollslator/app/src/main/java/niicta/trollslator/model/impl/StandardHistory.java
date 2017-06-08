@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import niicta.trollslator.events.Event;
+import niicta.trollslator.events.EventTypes;
 import niicta.trollslator.events.Impl.AddHistoryElementRequestEvent;
 import niicta.trollslator.events.Impl.HistoryChangedEvent;
 import niicta.trollslator.events.Impl.InvertFavoriteByNumberRequestEvent;
@@ -18,8 +19,8 @@ import niicta.trollslator.events.eventbus.EventBus;
 import niicta.trollslator.listeners.Listener;
 import niicta.trollslator.model.History;
 import niicta.trollslator.model.HistoryKey;
-import niicta.trollslator.model.factories.Factory;
-import niicta.trollslator.model.factories.FactoryProvider;
+import niicta.trollslator.model.factories.ModelFactory;
+import niicta.trollslator.model.factories.ModelFactoryProvider;
 
 /**
  * Created by niict on 30.03.2017.
@@ -32,17 +33,17 @@ public class StandardHistory implements History{
     //для хранения элементов истоии используется красно-черное дерево для быстрого поиска нужных элементов
     private TreeMap<HistoryKey, HistoryKey> history;
     private HistoryKey last;
-    private Factory historyKeyFactory;
+    private ModelFactory historyKeyFactory;
     private EventBus eventBus;
     private boolean initialized;
 
     private StandardHistory(){};
 
     public StandardHistory(EventBus eventBus, InputStream inputStream){
-        this(FactoryProvider.getInstance().provideFactory(), eventBus, inputStream);
+        this(ModelFactoryProvider.getInstance().provideFactory(), eventBus, inputStream);
     }
 
-    public StandardHistory(Factory historyKeyFactory, EventBus eventBus, InputStream inputStream){
+    public StandardHistory(ModelFactory historyKeyFactory, EventBus eventBus, InputStream inputStream){
         this.eventBus = eventBus;
         this.historyKeyFactory = historyKeyFactory;
         this.history = new TreeMap<>();
@@ -128,7 +129,7 @@ public class StandardHistory implements History{
         }
         //иначе продвигаем элемент в начало истории вызовом сответствующего метода
         else{
-            exctract(newLast.getText(), newLast.getFromLang(), newLast.getToLang());
+            extract(newLast.getText(), newLast.getFromLang(), newLast.getToLang());
         }
         notifyAboutChanges();
     }
@@ -148,7 +149,7 @@ public class StandardHistory implements History{
 
     //извлекаем определенный элемент и устанавливаем его как last
     @Override
-    public HistoryKey exctract(String text, String fromLang, String toLang){
+    public HistoryKey extract(String text, String fromLang, String toLang){
         //находим элемент в истории
         HistoryKey element = history.get((HistoryKey)historyKeyFactory.createHistoryKey(fromLang, toLang, text, ""));
         if (element == null)
@@ -214,14 +215,12 @@ public class StandardHistory implements History{
     }
 
     private void initListeners(final EventBus eventBus) {
-        final String addHistoryElementRequestEventType = new AddHistoryElementRequestEvent().getType();
-        final String invertFavoriteByNumberRequestEvent = new InvertFavoriteByNumberRequestEvent().getType();
 
-        eventBus.addListener(addHistoryElementRequestEventType,
+        eventBus.addListener(EventTypes.ADD_HISTORY_ELEMENT_REQUEST_EVENT_TYPE,
                 new Listener() {
                     @Override
                     public void onEvent(Event event) {
-                        if (event != null && addHistoryElementRequestEventType.equals(event.getType())){
+                        if (event != null && EventTypes.ADD_HISTORY_ELEMENT_REQUEST_EVENT_TYPE == event.getType()){
                             String[] eventArgs = ((AddHistoryElementRequestEvent)event).getEventArgs();
                             addLast(eventArgs[0], eventArgs[1], eventArgs[2], eventArgs[4]);
                         }
@@ -230,11 +229,11 @@ public class StandardHistory implements History{
                         }
                     }
                 });
-        eventBus.addListener(invertFavoriteByNumberRequestEvent,
+        eventBus.addListener(EventTypes.INVERT_FAVORITE_BY_NUMBER_REQUEST_EVENT_TYPE,
                 new Listener() {
                     @Override
                     public void onEvent(Event event) {
-                        if (event != null && invertFavoriteByNumberRequestEvent.equals(event.getType())){
+                        if (event != null && EventTypes.INVERT_FAVORITE_BY_NUMBER_REQUEST_EVENT_TYPE == event.getType()){
                             int eventArgs = ((InvertFavoriteByNumberRequestEvent)event).getEventArgs();
                             invertFavorite(eventArgs);
                         }

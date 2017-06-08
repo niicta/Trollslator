@@ -1,6 +1,7 @@
 package niicta.trollslator.events.Impl;
 
 import niicta.trollslator.events.Event;
+import niicta.trollslator.events.EventTypes;
 import niicta.trollslator.model.LanguageSwitcher;
 
 /**
@@ -8,19 +9,16 @@ import niicta.trollslator.model.LanguageSwitcher;
  */
 
 public class LanguageSwitcherChangedEvent implements Event {
-    private static final String EVENT_TYPE = "LanguageSwitcherChangedEvent";
 
     private LanguageSwitcher switcher;
-
-    public LanguageSwitcherChangedEvent(){}
 
     public LanguageSwitcherChangedEvent(LanguageSwitcher switcher){
         this.switcher = switcher;
     }
 
     @Override
-    public String getType() {
-        return EVENT_TYPE;
+    public int getType() {
+        return EventTypes.LANGUAGE_SWITCHER_CHANGED_EVENT_TYPE;
     }
 
     @Override

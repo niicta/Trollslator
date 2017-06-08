@@ -1,21 +1,18 @@
 package niicta.trollslator.events.Impl;
 
 import niicta.trollslator.events.Event;
+import niicta.trollslator.events.EventTypes;
 
 /**
  * Created by niict on 07.06.2017.
  */
 
 public class AddHistoryElementRequestEvent implements Event {
-    private static final String EVENT_TYPE = "AddHistoryElementRequestEvent";
 
     private String fromLang;
     private String toLang;
     private String text;
     private String translation;
-
-    public AddHistoryElementRequestEvent(){
-    }
 
     public AddHistoryElementRequestEvent(String fromLang, String toLang, String text, String translation){
         this.fromLang = fromLang;
@@ -25,8 +22,8 @@ public class AddHistoryElementRequestEvent implements Event {
     }
 
     @Override
-    public String getType() {
-        return EVENT_TYPE;
+    public int getType() {
+        return EventTypes.ADD_HISTORY_ELEMENT_REQUEST_EVENT_TYPE;
     }
 
     @Override

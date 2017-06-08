@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import niicta.trollslator.events.Event;
+import niicta.trollslator.events.EventTypes;
 import niicta.trollslator.events.Impl.MappingChangedEvent;
 import niicta.trollslator.events.Impl.NewLangMappingEvent;
 import niicta.trollslator.events.eventbus.EventBus;
@@ -42,24 +43,6 @@ public class StandardLanguageMapper implements LanguageMapper{
         initListeners(this.eventBus);
         notifyAboutChanges();
     }
-
-    private void initListeners(EventBus eventBus) {
-        final String newLangMappingEventType = new NewLangMappingEvent().getType();
-        eventBus.addListener(newLangMappingEventType,
-                new Listener() {
-                    @Override
-                    public void onEvent(Event event) {
-                        if (event != null && newLangMappingEventType.equals(event.getType())) {
-                            String[][] eventArgs = ((NewLangMappingEvent) event).getEventArgs();
-                            setMapping(eventArgs[0], eventArgs[1]);
-                        }
-                        else {
-                            throw new RuntimeException("Unsupported Event " + event);
-                        }
-                    }
-                });
-    }
-
 
     private class Pair implements Comparable<Pair>, Serializable{
         private String keyLang;
@@ -165,5 +148,22 @@ public class StandardLanguageMapper implements LanguageMapper{
 
     private void notifyAboutChanges(){
         eventBus.dispatchEvent(new MappingChangedEvent(this));
+    }
+
+
+    private void initListeners(EventBus eventBus) {
+        eventBus.addListener(EventTypes.NEW_LANG_MAPPING_EVENT_TYPE,
+                new Listener() {
+                    @Override
+                    public void onEvent(Event event) {
+                        if (event != null && EventTypes.NEW_LANG_MAPPING_EVENT_TYPE == event.getType()) {
+                            String[][] eventArgs = ((NewLangMappingEvent) event).getEventArgs();
+                            setMapping(eventArgs[0], eventArgs[1]);
+                        }
+                        else {
+                            throw new RuntimeException("Unsupported Event " + event);
+                        }
+                    }
+                });
     }
 }

@@ -5,6 +5,6 @@ package niicta.trollslator.events;
  */
 
 public interface Event {
-    String getType();
+    int getType();
     Object getEventArgs();
 }

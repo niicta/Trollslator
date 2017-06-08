@@ -14,10 +14,10 @@ import niicta.trollslator.listeners.Listener;
  */
 
 public class StandardEventBus implements EventBus {
-    private Map<String, List<Listener>> eventMap = new HashMap<>();
+    private Map<Integer, List<Listener>> eventMap = new HashMap<>();
 
     @Override
-    public void addListener(String eventType, Listener listener) {
+    public void addListener(int eventType, Listener listener) {
         List<Listener> listeners = eventMap.get(eventType);
         if (listeners == null){
             listeners = new ArrayList<>();

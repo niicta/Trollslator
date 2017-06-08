@@ -20,7 +20,7 @@ public interface History extends SerializableModelObject {
     TreeMap<HistoryKey, HistoryKey> getHistory();
     void invertFavorite(int number);
     boolean verifyFavorite(int number);
-    HistoryKey exctract(String text, String fromLang, String toLang);
+    HistoryKey extract(String text, String fromLang, String toLang);
     HistoryKey find(int number);
     List<HistoryKey> find(String mask);
     void clear();
