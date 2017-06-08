@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import niicta.trollslator.R;
-import niicta.trollslator.model.History;
+import niicta.trollslator.model.impl.StandardHistory;
 
 /**
  * Created by niict on 11.04.2017.
@@ -22,7 +22,7 @@ public class UpdateHistoryView implements Runnable {
     private Context context;
     private LinearLayout historyLayout;
     private EditText historyEditText;
-    private History history;
+    private StandardHistory history;
 
     public UpdateHistoryView(Context context, LinearLayout historyLayout, EditText historyEditText) {
         this.context = context;
@@ -34,13 +34,13 @@ public class UpdateHistoryView implements Runnable {
 
     @Override
     public void run() {
-        history = History.getInstance();
+        history = StandardHistory.getInstance();
         historyLayout.removeAllViews();
-        final ArrayList<History.HistoryKey> historyKeys = history.find(historyEditText.getText().toString());
+        final ArrayList<StandardHistory.StandardHistoryKey> historyKeys = history.find(historyEditText.getText().toString());
 
         for (int i = 0; i < historyKeys.size(); i++) {
             final int number = i;
-            History.HistoryKey key = historyKeys.get(i);
+            StandardHistory.StandardHistoryKey key = historyKeys.get(i);
             View historyList = LayoutInflater.from(context).inflate(R.layout.history_element, historyLayout, false);
             ((TextView) historyList.findViewById(R.id.history_text)).setText(key.getText());
             ((TextView) historyList.findViewById(R.id.history_translate)).setText(key.getTranslation());
@@ -56,7 +56,7 @@ public class UpdateHistoryView implements Runnable {
 
                 @Override
                 public void onClick(View v) {
-                    History.HistoryKey element = history.find(number);
+                    StandardHistory.StandardHistoryKey element = history.find(number);
                     boolean favorite = element.isFavorite();
                     if (favorite) {
                         element.setFavorite(false);

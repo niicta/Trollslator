@@ -1,6 +1,5 @@
 package niicta.trollslator.operations;
 
-import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -16,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.ParserConfigurationException;
 
 import niicta.trollslator.R;
-import niicta.trollslator.model.LangSwitcher;
+import niicta.trollslator.model.impl.StandardLanguageSwitcher;
 import niicta.trollslator.parsers.impl.XMLTranslateResponseParser;
 
 /**
@@ -63,8 +62,8 @@ public class Translator {
         //строи параметры запроса
         String urlParameters = new StringBuilder()
                 .append("text=").append(URLEncoder.encode(text, "UTF8"))
-                .append("&lang=").append(LangSwitcher.getInstance().getFromLang())
-                .append('-').append(LangSwitcher.getInstance().getToLang()).toString();
+                .append("&lang=").append(StandardLanguageSwitcher.getInstance().getFromLang())
+                .append('-').append(StandardLanguageSwitcher.getInstance().getToLang()).toString();
         //перевод параметров в массив байтов
         byte[] postData = urlParameters.getBytes( StandardCharsets.UTF_8 );
         int postDataLength = postData.length;

@@ -18,7 +18,7 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 
 import niicta.trollslator.R;
-import niicta.trollslator.model.LangSwitcher;
+import niicta.trollslator.model.impl.StandardLanguageSwitcher;
 import niicta.trollslator.operations.Translator;
 
 /**
@@ -73,7 +73,7 @@ public class TranslateAutoCompleteAdapter extends BaseAdapter implements Filtera
                 FilterResults filterResults = new FilterResults();
                 if (constraint != null){
                     List<Translation> translations = new ArrayList<>();
-                    LangSwitcher switcher = LangSwitcher.getInstance();
+                    StandardLanguageSwitcher switcher = StandardLanguageSwitcher.getInstance();
                     try {
                         String fromLang = switcher.getFromLang();
                         String toLang = switcher.getToLang();

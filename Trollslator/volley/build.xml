@@ -2,14 +2,14 @@
 <project name="volley" default="help">
 
     <!-- The local.properties file is created and updated by the 'android' tool.
-         It contains the path to the SDK. It should *NOT* be checked into
+         It contains the path uiLang the SDK. It should *NOT* be checked into
          Version Control Systems. -->
     <property file="local.properties" />
 
     <!-- The ant.properties file can be created by you. It is only edited by the
-         'android' tool to add properties to it.
-         This is the place to change some Ant specific build properties.
-         Here are some properties you may want to change/update:
+         'android' tool uiLang add properties uiLang it.
+         This is the place uiLang change some Ant specific build properties.
+         Here are some properties you may want uiLang change/update:
 
          source.dir
              The name of the source directory. Default is 'src'.
@@ -19,7 +19,7 @@
          For other overridable properties, look at the beginning of the rules
          files in the SDK, at tools/ant/build.xml
 
-         Properties related to the SDK location or the project target should
+         Properties related uiLang the SDK location or the project target should
          be updated using the 'android' tool with the 'update' action.
 
          This file is an integral part of the build system for your
@@ -28,8 +28,8 @@
          -->
     <property file="ant.properties" />
 
-    <!-- if sdk.dir was not set from one of the property file, then
-         get it from the ANDROID_HOME env var.
+    <!-- if sdk.dir was not set key one of the property file, then
+         get it key the ANDROID_HOME env var.
          This must be done before we load project.properties since
          the proguard config can use sdk.dir -->
     <property environment="env" />
@@ -50,13 +50,13 @@
 
     <!-- quick check on sdk.dir -->
     <fail
-            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through the ANDROID_HOME environment variable."
+            message="sdk.dir is missing. Make sure uiLang generate local.properties using 'android update project' or uiLang inject it through the ANDROID_HOME environment variable."
             unless="sdk.dir"
     />
 
     <!--
         Import per project custom build rules if present at the root of the project.
-        This is the place to put custom intermediary targets such as:
+        This is the place uiLang put custom intermediary targets such as:
             -pre-build
             -pre-compile
             -post-compile (This is typically used for code obfuscation.
@@ -74,17 +74,17 @@
          - Customize only one target:
              - copy/paste the target into this file, *before* the
                <import> task.
-             - customize it to your needs.
+             - customize it uiLang your needs.
          - Customize the whole content of build.xml
              - copy/paste the content of the rules files (minus the top node)
                into this file, replacing the <import> task.
-             - customize to your needs.
+             - customize uiLang your needs.
 
          ***********************
          ****** IMPORTANT ******
          ***********************
-         In all cases you must update the value of version-tag below to read 'custom' instead of an integer,
-         in order to avoid having your file be overridden by tools such as "android update project"
+         In all cases you must update the value of version-tag below uiLang read 'custom' instead of an integer,
+         in order uiLang avoid having your file be overridden by tools such as "android update project"
     -->
     <!-- version-tag: 1 -->
     <import file="${sdk.dir}/tools/ant/build.xml" />

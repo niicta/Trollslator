@@ -36,10 +36,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import niicta.trollslator.model.LangContainer;
-import niicta.trollslator.model.LangSwitcher;
+import niicta.trollslator.model.impl.StandardLanguageMapper;
+import niicta.trollslator.model.impl.StandardLanguageSwitcher;
 import niicta.trollslator.view.adapters.TranslateAutoCompleteAdapter.Translation;
-import niicta.trollslator.model.History;
+import niicta.trollslator.model.impl.StandardHistory;
 import niicta.trollslator.operations.Translator;
 import niicta.trollslator.operations.runnable.UpdateFavoriteView;
 import niicta.trollslator.operations.runnable.UpdateHistoryView;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout favoriteLayout;
     LinearLayout historyLayout;
     RequestQueue queue;
-    History history;
+    StandardHistory history;
     Handler handler;
     ProgressBar centralProgressBar;
     ImageView star;
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         try {
-            History.serialize(openFileOutput(HISTORY_FILE_NAME, MODE_PRIVATE));
+            StandardHistory.serialize(openFileOutput(HISTORY_FILE_NAME, MODE_PRIVATE));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -110,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         if (fis != null){
-            History.deserialize(fis);
+            StandardHistory.deserialize(fis);
 
         }
-        history = History.getInstance();
+        history = StandardHistory.getInstance();
     }
 
     @Override
@@ -133,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
         langBlock.setOnFromItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //установка LangSwitcher - сущность, содержащая актуальное направление перевода
+                //установка StandardLanguageSwitcher - сущность, содержащая актуальное направление перевода
                     String selected = parent.getSelectedItem().toString();
-                    LangSwitcher.getInstance().setFromLang(LangContainer.getInstance().getLang(selected));
+                    StandardLanguageSwitcher.getInstance().setFromLang(StandardLanguageMapper.getInstance().getLang(selected));
                 translateAutoCompleteTextView.invokeFiltering();
 
             }
@@ -149,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
         langBlock.setOnToItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    //установка LangSwitcher
+                    //установка StandardLanguageSwitcher
                     String selected = parent.getSelectedItem().toString();
-                    LangSwitcher.getInstance().setToLang(LangContainer.getInstance().getLang(selected));
+                    StandardLanguageSwitcher.getInstance().setToLang(StandardLanguageMapper.getInstance().getLang(selected));
                 translateAutoCompleteTextView.invokeFiltering();
             }
 
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                History.HistoryKey element = history.getLast();
+                StandardHistory.StandardHistoryKey element = history.getLast();
                 boolean favorite = element.isFavorite();
                 if (favorite) {
                     element.setFavorite(false);
@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
                                     return;
                                 }
                                 //получаем сущность-"переключатель" языков, содержащую актуальное направление перевода
-                                LangContainer container = LangContainer.getInstance();
+                                StandardLanguageMapper container = StandardLanguageMapper.getInstance();
                                 for (int i = 0; i < keyStrings.size(); i++){
                                     //устанавливаем соответсвия ключей языков с их ui представлениями
                                     container.setMapping(uiStrings.get(i), keyStrings.get(i));
@@ -419,7 +419,7 @@ public class MainActivity extends AppCompatActivity {
                                 langBlock.setFromAdapter(fromAdapter);
                                 langBlock.setToAdapter(toAdapter);
                                 langBlock.loading(false);
-                                langBlock.setFromSpinnerItem(LangContainer.getInstance().getUiLang(getResources().getString(R.string.ui)));
+                                langBlock.setFromSpinnerItem(StandardLanguageMapper.getInstance().getUiLang(getResources().getString(R.string.ui)));
                             }
 
                         },
@@ -509,7 +509,7 @@ public class MainActivity extends AppCompatActivity {
                         Map<String, String> paramsMap = new HashMap<>();
                         paramsMap.put("key", dictionaryKey);
                         StringBuffer lang = new StringBuffer("");
-                        lang.append(LangSwitcher.getInstance().getFromLang()).append('-').append(LangSwitcher.getInstance().getToLang());
+                        lang.append(StandardLanguageSwitcher.getInstance().getFromLang()).append('-').append(StandardLanguageSwitcher.getInstance().getToLang());
                         paramsMap.put("lang", lang.toString());
                         paramsMap.put("text", translateAutoCompleteTextView.getText().toString());
                         paramsMap.put("ui", getResources().getString(R.string.ui));
